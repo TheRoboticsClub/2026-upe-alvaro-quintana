@@ -1,0 +1,347 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap');
+
+/* =========================================
+   VARIABLES Y CONFIGURACIÓN BASE
+   ========================================= */
+:root {
+  --primary: #FFC107;
+  --bg: #0e1621;
+  --text-dim: #d0d6dc;
+  --header-h: 74px;
+  --accent-blue: #78b4ff;
+}
+
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+  font-family: "Ubuntu", sans-serif; 
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--bg);
+}
+
+body { 
+  background: var(--bg); 
+  color: white; 
+  overflow-x: hidden; 
+  isolation: isolate; 
+}
+
+/* =========================================
+   EFECTOS DE FONDO
+   ========================================= */
+.grain {
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.04; 
+  pointer-events: none; 
+  z-index: 99;
+}
+
+body::before {
+  content: ""; 
+  position: fixed; 
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255, 193, 7, 0.05) 0%, transparent 60%),
+    radial-gradient(circle at 100% 0%, rgba(255, 193, 7, 0.035) 0%, transparent 45%),
+    radial-gradient(circle at 0% 100%, rgba(120, 180, 255, 0.025) 0%, transparent 50%);
+  background-size: 200% 200%;
+  z-index: -1; 
+  animation: backgroundMove 20s ease-in-out infinite alternate;
+}
+
+@keyframes backgroundMove {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 100%; }
+}
+
+/* =========================================
+   HEADER (LOGO REACTIVO Y BOTÓN)
+   ========================================= */
+header {
+  position: fixed; 
+  top: 0; 
+  width: 100%; 
+  height: var(--header-h);
+  background: rgba(11, 18, 26, 0.95); 
+  backdrop-filter: blur(10px);
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  padding: 0 60px; 
+  z-index: 100;
+  border-bottom: 1px solid rgba(255, 193, 7, 0.15);
+}
+
+.nav-brand { 
+  display: flex; 
+  align-items: center; 
+  gap: 15px; 
+  text-decoration: none;
+}
+
+.brand-logo-img { 
+  height: 35px; 
+  transition: transform 0.3s ease; 
+}
+
+.assoc-logo-img { 
+  height: 38px; 
+  filter: grayscale(0.4) brightness(1.2); 
+  opacity: 0.8;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+}
+
+.nav-brand:hover .brand-logo-img { transform: scale(1.1); }
+.nav-brand:hover .assoc-logo-img { 
+  filter: grayscale(0) brightness(1); 
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.x-sep { color: var(--primary); font-weight: bold; font-size: 1.2rem; }
+
+.nav-contact { 
+  border: 1px solid var(--primary); 
+  color: var(--primary); 
+  text-decoration: none; 
+  padding: 8px 18px; 
+  border-radius: 6px; 
+  font-weight: 700; 
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.nav-contact:hover { 
+  background: rgba(255, 193, 7, 0.1); 
+  box-shadow: 0 0 15px rgba(255, 193, 7, 0.2); 
+}
+
+/* =========================================
+   CONTENIDO PRINCIPAL Y HERO
+   ========================================= */
+.practicas-main { 
+  padding: calc(var(--header-h) + 60px) 60px 100px; 
+  max-width: 1000px; 
+  margin: 0 auto; 
+}
+
+.hero-mini { text-align: center; margin-bottom: 50px; }
+.hero-mini h1 { font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 800; }
+.hero-mini span { color: var(--primary); }
+.lead { color: var(--text-dim); margin-top: 10px; font-size: 1.1rem; }
+
+/* =========================================
+   NAVEGACIÓN RÁPIDA (STYLING)
+   ========================================= */
+.fast-nav-container { 
+  margin-bottom: 40px; 
+  text-align: center; 
+}
+
+.fast-nav-container p {
+  color: var(--primary);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+.fast-nav-slider { 
+  display: flex; 
+  gap: 12px; 
+  overflow-x: auto; 
+  padding: 10px 0; 
+  justify-content: center; 
+}
+
+.fast-nav-slider a { 
+  background: rgba(255, 255, 255, 0.03); 
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-dim); 
+  padding: 8px 20px; 
+  border-radius: 25px; 
+  text-decoration: none;
+  font-size: 13px; 
+  font-weight: 500;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.fast-nav-slider a:hover, .fast-nav-slider a.active { 
+  border-color: var(--primary); 
+  color: var(--primary); 
+  background: rgba(255, 193, 7, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 193, 7, 0.1);
+}
+
+/* =========================================
+   TIMELINE Y ACORDEÓN
+   ========================================= */
+.timeline { 
+  position: relative; 
+  border-left: 2px solid rgba(255, 193, 7, 0.1); 
+  padding-left: 40px; 
+}
+
+.week-node { 
+  background: rgba(255, 255, 255, 0.02); 
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px; 
+  margin-bottom: 25px; 
+  overflow: hidden; 
+  transition: 0.3s ease;
+}
+
+.week-node:hover { 
+  border-color: rgba(255, 193, 7, 0.3); 
+  background: rgba(255, 255, 255, 0.04); 
+}
+
+.week-header { 
+  padding: 25px; 
+  list-style: none; 
+  cursor: pointer; 
+  display: flex; 
+  align-items: center; 
+  gap: 20px; 
+}
+
+.week-header::-webkit-details-marker { display: none; }
+
+.marker { 
+  width: 45px; 
+  height: 45px; 
+  background: #1a1a1a; 
+  color: var(--primary);
+  border: 2px solid var(--primary); 
+  border-radius: 50%; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  font-weight: 800; 
+  transition: 0.3s;
+  flex-shrink: 0;
+}
+
+.week-node[open] .marker { 
+  background: var(--primary); 
+  color: #000; 
+  box-shadow: 0 0 15px var(--primary); 
+}
+
+.date-tag { color: var(--accent-blue); font-weight: 700; font-size: 0.75rem; }
+
+.chevron { 
+  margin-left: auto; 
+  transition: 0.4s ease; 
+  color: var(--text-dim); 
+}
+
+.week-node[open] .chevron { 
+  transform: rotate(180deg) scale(1.2); 
+  color: var(--primary); 
+}
+
+/* =========================================
+   CONTENIDO INTERNO
+   ========================================= */
+.week-content { 
+  padding: 0 30px 30px 85px; 
+  color: var(--text-dim); 
+  line-height: 1.8; 
+  animation: fadeIn 0.5s ease; 
+}
+
+@keyframes fadeIn { 
+  from { opacity: 0; transform: translateY(-10px); } 
+  to { opacity: 1; transform: translateY(0); } 
+}
+
+.week-content b { color: white; font-weight: 700; }
+.week-content i { color: var(--primary); font-style: normal; font-weight: 500; }
+
+.media-box { 
+  margin: 25px 0; 
+  border-radius: 12px; 
+  overflow: hidden; 
+  border: 1px solid rgba(255,255,255,0.1); 
+  background: #050a0f; 
+}
+
+.media-box img { 
+  width: 100%; 
+  display: block; 
+  transition: 0.5s ease; 
+}
+
+.media-box:hover img { transform: scale(1.02); }
+
+.caption { 
+  padding: 12px; 
+  font-size: 0.85rem; 
+  text-align: center; 
+  color: #888; 
+  background: rgba(0,0,0,0.2);
+}
+
+.code-block { 
+  background: #000; 
+  padding: 18px; 
+  border-radius: 10px; 
+  font-family: 'Courier New', monospace;
+  border-left: 4px solid var(--primary); 
+  color: #a6e22e; 
+  margin: 20px 0; 
+  overflow-x: auto;
+}
+
+.custom-list { margin: 15px 0; padding-left: 20px; }
+.custom-list li { margin-bottom: 8px; color: var(--text-dim); }
+.custom-list li::marker { color: var(--primary); }
+
+/* =========================================
+   FOOTER
+   ========================================= */
+.footer { 
+  padding: 40px 60px; 
+  border-top: 1px solid rgba(255, 255, 255, 0.1); 
+  margin-top: 50px; 
+}
+
+.footer-inner { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  color: var(--text-dim); 
+  font-size: 14px; 
+}
+
+.footer-links a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+@media (max-width: 800px) {
+  header { padding: 0 20px; }
+  .practicas-main { padding: 100px 20px; }
+  .timeline { padding-left: 20px; }
+  .week-content { padding-left: 20px; }
+  .marker { width: 35px; height: 35px; font-size: 0.9rem; }
+  .hero-mini h1 { font-size: 2.2rem; }
+  .footer { padding: 30px 20px; }
+}

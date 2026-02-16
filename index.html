@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logbook | Álvaro Quintana</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<header>
+  <div class="nav-brand">
+    <img src="docs/aquintan.png" alt="Álvaro" class="brand-logo-img">
+    <span class="x-sep">×</span>
+    <img src="docs/logo.png" alt="JdeRobot" class="assoc-logo-img">
+  </div>
+  <nav class="nav-links">
+    <a href="https://aquintan4.github.io" class="nav-contact">Ir a mi Portfolio</a>
+  </nav>
+</header>
+
+<main class="practicas-main">
+  
+  <section class="hero-mini">
+    <h1>Logbook de <span>Prácticas</span></h1>
+    <p class="lead">Seguimiento semanal de retos y desarrollo en la asociación JdeRobot.</p>
+  </section>
+
+    <div class="fast-nav-container">
+    <p>Navegación rápida</p> <div class="fast-nav-slider" id="nav-slider">
+        </div>
+    </div>
+
+  <div class="timeline" id="logbook-timeline">
+
+    <details class="week-node" id="sem-0">
+      <summary class="week-header">
+        <div class="marker">00</div>
+        <div class="title-group">
+          <span class="date-tag">DD Mes - DD Mes, YYYY</span>
+          <h2>Plantilla: Guía de Componentes Modulares</h2>
+        </div>
+        <div class="chevron">▼</div>
+      </summary>
+      
+      <div class="week-content">
+        <p>Para resaltar texto importante usa la etiqueta <b>b de negrita</b>. Para términos técnicos o énfasis sutil, usa la etiqueta <i>i de cursiva</i>, que aparecerá en el amarillo de la asociación.</p>
+        
+        <p>Puedes insertar listas de objetivos:</p>
+        <ul class="custom-list">
+          <li>Primer hito alcanzado.</li>
+          <li>Depuración del nodo de control.</li>
+        </ul>
+
+        <div class="media-box">
+          <img src="docs/logo.png" alt="Ejemplo de imagen" style="max-width: 200px; margin: 0 auto; display: block; padding: 20px;">
+          <p class="caption">Las imágenes llevan un borde sutil y pie de foto centrado.</p>
+        </div>
+
+        <p>Para fragmentos de código, usa el bloque <code>code-block</code>:</p>
+        <div class="code-block">
+          <code># Comando de ejemplo<br>python3 -m venv venv</code>
+        </div>
+      </div>
+    </details>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>© 2026 Álvaro Quintana × JdeRobot</span>
+    <div class="footer-links">
+      <a href="https://aquintan4.github.io">Portfolio</a>
+    </div>
+  </div>
+</footer>
+
+<script src="logbook.js"></script>
+
+</body>
+</html>
