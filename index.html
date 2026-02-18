@@ -66,6 +66,59 @@
       </div>
     </details>
 
+
+<details class="week-node" id="sem-1" open>
+      <summary class="week-header">
+        <div class="marker">01</div>
+        <div class="title-group">
+          <span class="date-tag">17 02 - 20 02, 2026</span>
+          <h2>Blog + Despliegue local (D1) Unibotics</h2>
+        </div>
+        <div class="chevron">▼</div>
+      </summary>
+      
+      <div class="week-content">
+        <p>Esta semana he configurado este logbook y completado el <b>despliegue local D1</b> de Unibotics. Durante el proceso, he analizado la <i>arquitectura de la aplicación</i>, que se asienta sobre tres capas principales: una base de datos persistente, un backend robusto en Django y un frontend reactivo.</p>
+        
+        <p>La instalación ha seguido un orden lógico para levantar este ecosistema:</p>
+        <ul class="custom-list">
+          <li><b>Entorno de ejecución</b>: Configuración de un <i>entorno virtual</i> aislado con <b>Python 3.8</b> para gestionar las dependencias del servidor Django.</li>
+          <li><b>Repositorio y submódulos</b>: Clonado recursivo del servidor incluyendo submódulos críticos como <i>Robotics Academy (RA)</i> y <i>Robotics Infrastructure (RI)</i>, que alojan los ejercicios.</li>
+          <li><b>Base de Datos con Docker</b>: Despliegue mediante un contenedor <b>PostgreSQL 13.11</b> que escucha en el puerto <b>5432</b>. He configurado la conexión mediante un archivo <code>.env</code> para sincronizar el backend con la base de datos.</li>
+          <li><b>Población de la BD</b>: Tras levantar el contenedor, he tenido que completar las tablas manualmente aplicando los <b>dumps de SQL</b> de RI y RA. Posteriormente, ejecuté las <i>migraciones de Django</i> e inyecté los usuarios de prueba.</li>
+          <li><b>Frontend</b>: Uso de <b>Node.js 17</b> y <b>Webpack</b> para compilar y servir los archivos estáticos de la interfaz en React.</li>
+        </ul>
+
+        <p>En cuanto al <b>Robotics Backend</b>, al ser una herramienta que ya conocía, el proceso consistió en descargar su imagen de Docker y lanzarla habilitando el soporte para <b>GPU (gráfica)</b> mediante <i>nvidia-smi</i> para asegurar la fluidez de los simuladores.</p>
+
+        <div class="media-box">
+          <img src="resources/d1_esquema.png" alt="Esquema de arquitectura D1" style="max-width: 80%; margin: 0 auto; display: block; padding: 20px;">
+          <p class="caption">Arquitectura D1: El Backend Django (7000) actúa como puente entre la BD PostgreSQL (5432) y el Robotics Backend (6080).</p>
+        </div>
+
+        <p>Comandos útiles para <b>lanzar la aplicación</b> en terminales independientes:</p>
+        
+        <div class="code-block">
+          <code>
+            # Terminal 1: Iniciar la Base de Datos (PostgreSQL)<br>
+            docker start academy_db<br><br>
+            
+            # Terminal 2: Servidor Django (Backend)<br>
+            # (Activar entorno virtual academy-venv)<br>
+            cd unibotics-webserver/unibotics/<br>
+            python manage.py runserver 7000<br><br>
+            
+            # Terminal 3: Webpack (Frontend React)<br>
+            cd unibotics-webserver/unibotics/react_frontend<br>
+            npm run dev<br><br>
+            
+            # Terminal 4: Robotics Backend (Lanzamiento con GPU)<br>
+            docker run --rm -it $(nvidia-smi >/dev/null 2>&1 && echo "--gpus all" || echo "") --device /dev/dri -p 6080-6090:6080-6090 -p 7163:7163 jderobot/robotics-backend:latest
+          </code>
+        </div>
+      </div>
+    </details>
+
   </div>
 </main>
 
